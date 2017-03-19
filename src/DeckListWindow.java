@@ -13,6 +13,8 @@ import java.awt.Toolkit;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DeckListWindow extends JFrame {
 
@@ -26,8 +28,8 @@ public class DeckListWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DeckListWindow frame = new DeckListWindow();
-					frame.setVisible(true);
+					DeckListWindow frame1 = new DeckListWindow();
+					frame1.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,6 +67,12 @@ public class DeckListWindow extends JFrame {
 		 * Add card button
 		 */
 		JButton btnAddCard = new JButton("Add card");
+		btnAddCard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddCardWindow frame2 = new AddCardWindow();
+				frame2.setVisible(true);
+			}
+		});
 		btnAddCard.setRequestFocusEnabled(false);
 		btnAddCard.setForeground(new Color(255, 255, 255));
 		btnAddCard.setBackground(new Color(65, 105, 225));
@@ -114,7 +122,7 @@ public class DeckListWindow extends JFrame {
 				{null, null},
 			},
 			new String[] {
-				"Name", "Type"
+				"Name", "Card"
 			}
 		) {
 			Class[] columnTypes = new Class[] {

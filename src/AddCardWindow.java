@@ -36,8 +36,8 @@ public class AddCardWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddCardWindow frame = new AddCardWindow();
-					frame.setVisible(true);
+					AddCardWindow frame2 = new AddCardWindow();
+					frame2.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,7 +56,7 @@ public class AddCardWindow extends JFrame {
 		setBackground(new Color(255, 255, 255));
 		setTitle("Add card");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AddCardWindow.class.getResource("/pictures/pokeball.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(800, 100, 480, 760);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 102));
@@ -169,7 +169,7 @@ public class AddCardWindow extends JFrame {
 		pkmnPanel.add(pkmnEvolutionField);
 		
 		/*
-		 * Description label + textarea
+		 * Description label + textArea
 		 */
 		JLabel lblPkmnDesc = new JLabel("Description");
 		lblPkmnDesc.setBounds(41, 254, 130, 14);
