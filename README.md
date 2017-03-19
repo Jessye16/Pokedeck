@@ -1,1 +1,1 @@
-# Pokedeck by Jessye V for UPMC Project
+Pokedeck project - UPMC #By JessyeV
