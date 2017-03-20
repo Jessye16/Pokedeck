@@ -1,12 +1,12 @@
+package pokedeckGUI;
+
 import java.awt.EventQueue;
 
-import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.Component;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
@@ -16,40 +16,25 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import controller.PokedeckController;
+
 
 public class DeckListWindow extends JFrame {
 
+	private PokedeckController controller;
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DeckListWindow frame1 = new DeckListWindow();
-					frame1.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	/*
-	 * Initialize connection to DB
+	 * Create table
 	 */
-	Connection conn = null;	
 	private JTable table;
 	
 
 	/**
 	 * Create the frame.
 	 */
-	public DeckListWindow() {
-		conn = sqliteConnection.dbConnect();
-		
+	public DeckListWindow(PokedeckController ctrl) {	
+		controller = ctrl;
 		setAlwaysOnTop(true);
 		setResizable(false);
 		setTitle("Pokemon Trading Card Game");
@@ -79,8 +64,7 @@ public class DeckListWindow extends JFrame {
 		btnAddCard.setBounds(23, 175, 201, 43);
 		btnAddCard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddCardWindow frame2 = new AddCardWindow();
-				frame2.setVisible(true);
+				controller.openAddCardView();
 			}
 		});
 		btnAddCard.setRequestFocusEnabled(false);
@@ -121,18 +105,18 @@ public class DeckListWindow extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"Name", "Type"
+				"N\u00B0", "Name", "Type"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, false
+				false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		});
-		table.getColumnModel().getColumn(0).setPreferredWidth(337);
-		table.getColumnModel().getColumn(1).setPreferredWidth(208);
+		table.getColumnModel().getColumn(1).setPreferredWidth(337);
+		table.getColumnModel().getColumn(2).setPreferredWidth(208);
 		scrollPane.setViewportView(table);
 	}
 }

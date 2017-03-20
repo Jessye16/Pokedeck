@@ -1,6 +1,6 @@
-package cards;
+package model;
 
-public class EnergyCard extends Card {
+public class EnergyCard {
 	
 	private PokemonType type;
 	

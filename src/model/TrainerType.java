@@ -1,4 +1,4 @@
-package cards;
+package model;
 
 public enum TrainerType {
 	ITEM,

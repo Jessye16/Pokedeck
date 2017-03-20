@@ -1,4 +1,4 @@
-package cards;
+package model;
 
 public class TrainerCard extends Card {
 	
@@ -6,6 +6,13 @@ public class TrainerCard extends Card {
 	private PokemonType type;
 	private String description;
 	private String rule;
+	
+	public TrainerCard(String cardName,PokemonType cardType,String cardDesc,String cardRule) {
+		setName(cardName);
+		setType(cardType);
+		setDescription(cardDesc);
+		setRule(cardRule);
+	}
 	
 	public String getName() {
 		return name;
