@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Toolkit;
+import java.sql.Connection;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -19,6 +20,8 @@ import java.awt.Font;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import cards.TrainerType;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class AddCardWindow extends JFrame {
@@ -44,15 +47,14 @@ public class AddCardWindow extends JFrame {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public AddCardWindow() {
 		setAlwaysOnTop(true);
-		/*
-		 * settings for contentPane and frame window
-		 */
+		setResizable(false);
 		setBackground(new Color(255, 255, 255));
 		setTitle("Add card");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AddCardWindow.class.getResource("/pictures/pokeball.png")));
@@ -98,6 +100,16 @@ public class AddCardWindow extends JFrame {
 		pkmnPanel.add(lblPkmnName);
 		
 		pkmnNameField = new JTextField();
+		pkmnNameField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent getVal) {
+				try{
+					String pkmnNameValue = pkmnNameField.getText();
+				}
+				catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+		});
 		pkmnNameField.setBounds(41, 30, 290, 20);
 		pkmnPanel.add(pkmnNameField);
 		pkmnNameField.setColumns(10);
@@ -123,6 +135,16 @@ public class AddCardWindow extends JFrame {
 		pkmnPanel.add(lblHp);
 		
 		pkmnHpField = new JTextField();
+		pkmnHpField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent getVal) {
+				try{
+					String pkmnHpValue = pkmnHpField.getText();
+				}
+				catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+		});
 		pkmnHpField.setColumns(10);
 		pkmnHpField.setBounds(41, 131, 290, 20);
 		pkmnPanel.add(pkmnHpField);
@@ -176,22 +198,38 @@ public class AddCardWindow extends JFrame {
 		pkmnPanel.add(lblPkmnDesc);
 		
 		TextArea pkmnTextArea = new TextArea();
-		pkmnTextArea.setText("Type here...");
-		pkmnTextArea.setBounds(41, 274, 290, 144);
+		pkmnTextArea.setBounds(41, 274, 290, 52);
 		pkmnPanel.add(pkmnTextArea);
+		
+		JLabel lblTest = new JLabel("New label");
+		lblTest.setBounds(41, 362, 46, 14);
+		pkmnPanel.add(lblTest);
+		
 		
 		/*
 		 * Add button to save the form
 		 */
+		//----BUTTON DESIGN----
 		JButton pkmnAddBtn = new JButton("ADD");
 		pkmnAddBtn.setForeground(new Color(255, 255, 255));
 		pkmnAddBtn.setBackground(new Color(220, 20, 60));
 		pkmnAddBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
 		pkmnAddBtn.setBounds(101, 434, 180, 30);
+		
+		//----BUTTON INTERACTION----
+		pkmnAddBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String pkmnHpValue = pkmnHpField.getText();
+				lblTest.setText(pkmnHpValue);
+			}
+		});
 		pkmnPanel.add(pkmnAddBtn);
 		
-		pkmnPanel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{pkmnNameField, pkmnComboBox, pkmnHpField, rdbtnBase, rdBtn1, rdBtn2, pkmnEvolutionField, pkmnTextArea, pkmnAddBtn}));
 		
+		
+		/*
+		 * ## NEW trainer card panel
+		 */
 		JPanel trainerPanel = new JPanel();
 		trainerPanel.setLayout(null);
 		trainerPanel.setForeground(Color.BLACK);
@@ -222,17 +260,27 @@ public class AddCardWindow extends JFrame {
 		trainerPanel.add(lblTrainerDesc);
 		
 		TextArea trainerTextArea = new TextArea();
-		trainerTextArea.setText("Type here...");
 		trainerTextArea.setBounds(41, 132, 290, 144);
 		trainerPanel.add(trainerTextArea);
+		
+		JLabel lblTrainerRule = new JLabel("Rule");
+		lblTrainerRule.setBounds(41, 289, 46, 14);
+		trainerPanel.add(lblTrainerRule);
+		
+		TextArea ruletextArea = new TextArea();
+		ruletextArea.setBounds(42, 311, 290, 85);
+		trainerPanel.add(ruletextArea);
 		
 		JButton trainerAddBtn = new JButton("ADD");
 		trainerAddBtn.setForeground(Color.WHITE);
 		trainerAddBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
 		trainerAddBtn.setBackground(new Color(220, 20, 60));
-		trainerAddBtn.setBounds(101, 292, 180, 30);
+		trainerAddBtn.setBounds(97, 421, 180, 30);
 		trainerPanel.add(trainerAddBtn);
 		
+		/*
+		 *  ##NEW Energy card panel
+		 */
 		JPanel energyPanel = new JPanel();
 		energyPanel.setLayout(null);
 		energyPanel.setForeground(Color.BLACK);
