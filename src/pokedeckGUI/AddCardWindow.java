@@ -262,11 +262,11 @@ public class AddCardWindow extends JFrame {
 		ruleScrollPane.setBounds(41, 308, 290, 88);
 		trainerPanel.add(ruleScrollPane);
 		
-		JTextArea ruleTextArea = new JTextArea();
-		ruleTextArea.setWrapStyleWord(true);
-		ruleTextArea.setLineWrap(true);
-		ruleTextArea.setDoubleBuffered(true);
-		ruleScrollPane.setViewportView(ruleTextArea);
+		JTextArea trainerRuleTextArea = new JTextArea();
+		trainerRuleTextArea.setWrapStyleWord(true);
+		trainerRuleTextArea.setLineWrap(true);
+		trainerRuleTextArea.setDoubleBuffered(true);
+		ruleScrollPane.setViewportView(trainerRuleTextArea);
 		
 		// ------------- ADD BUTTON ---------------
 		JButton trainerAddBtn = new JButton("ADD");
@@ -278,9 +278,11 @@ public class AddCardWindow extends JFrame {
 		trainerAddBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String trainerNameValue = trainerNameField.getText();
-				String trainerTypeValue = (String)trainerComboBox.getSelectedItem();
-				//Need desc
-				//Need rule
+				TrainerType trainerTypeValue = (TrainerType)trainerComboBox.getSelectedItem();
+				String trainerDescValue = trainerDescTextArea.getText();
+				String trainerRuleValue = trainerRuleTextArea.getText();
+				
+				controller.addTrainerCard(trainerNameValue, trainerTypeValue, trainerDescValue, trainerRuleValue);
 			}
 		});
 		trainerPanel.add(trainerAddBtn);

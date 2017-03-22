@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import controller.PokedeckController;
+import javax.swing.JList;
 
 
 public class DeckListWindow extends JFrame {
@@ -78,6 +79,17 @@ public class DeckListWindow extends JFrame {
 		 * See selected card details button
 		 */
 		JButton btnDeleteSelectedCard = new JButton("Delete selected card");
+		btnDeleteSelectedCard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Trouver la carte que l'on veut supprimer dans la JTable
+				int cardIndex = table.getSelectedRow();
+				
+				//Supprimer la ligne du JTable
+				((DefaultTableModel)table.getModel()).removeRow(cardIndex);
+				//Supprimer la carte du deck
+				removeRowInTable(cardIndex);
+			}
+		});
 		btnDeleteSelectedCard.setBounds(116, 229, 234, 43);
 		btnDeleteSelectedCard.setForeground(new Color(255, 255, 255));
 		btnDeleteSelectedCard.setFont(new Font("PixelSix10", Font.PLAIN, 14));
@@ -97,15 +109,18 @@ public class DeckListWindow extends JFrame {
 		contentPane.add(btnSeeSelectedCard);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(23, 322, 428, 260);
+		scrollPane.setBounds(23, 322, 428, 382);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setSelectionBackground(Color.LIGHT_GRAY);
+		table.setRowHeight(30);
+		table.setFont(new Font("Tahoma", Font.BOLD, 14));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"N\u00B0", "Name", "Type"
+				"Name", "Type"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -115,8 +130,17 @@ public class DeckListWindow extends JFrame {
 				return columnEditables[column];
 			}
 		});
-		table.getColumnModel().getColumn(1).setPreferredWidth(337);
-		table.getColumnModel().getColumn(2).setPreferredWidth(208);
+		table.getColumnModel().getColumn(0).setPreferredWidth(250);
 		scrollPane.setViewportView(table);
 	}
+	
+	public void addRowInTable(String name,String type){
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.addRow(new Object[]{name, type});
+	}
+	
+	public void removeRowInTable(int id){
+		controller.removeCard(id);
+	}
+	
 }

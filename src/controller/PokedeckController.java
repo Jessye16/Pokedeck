@@ -27,12 +27,18 @@ public class PokedeckController {
 		
 	}
 	
-	public void addTrainerCard(String cardName,PokemonType cardType,String cardDesc,String cardRule){
+	public void addTrainerCard(String cardName,TrainerType cardType,String cardDesc,String cardRule){
 		TrainerCard trainer = new TrainerCard(cardName,cardType,cardDesc,cardRule);
 		deck.addCard(trainer);
+		deckListWindow.addRowInTable(cardName, "Trainer");
 	}
 	
 	public void addEnergyCard(){
 		
+	}
+	
+	public void removeCard(int cardIndex){
+		//Supprimer la carte du deck (Pokedeck)
+		deck.removeCard(cardIndex);
 	}
 }

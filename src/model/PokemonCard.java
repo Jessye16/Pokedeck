@@ -7,9 +7,7 @@ public class PokemonCard extends Card {
 	private int collectorCardNumber;
 	private PokemonType type;
 	
-	public PokemonCard() {
-		
-	}
+	public PokemonCard() {}
 
 	public int getHP() {
 		return HP;

@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class Pokedeck {
 	
-	static ArrayList<Card> cards; //Le deck
-
+	private static ArrayList<Card> cards; //Le deck
+	
 	public Pokedeck() {
 		//On initialise l'ArrayList pour la rendre utilisable
 		cards = new ArrayList<>();
@@ -17,8 +17,10 @@ public class Pokedeck {
 	}
 	
 	//remove card from deck
-	public static void removeCard(Card card){
-		cards.remove(card); //On retire la carte du pokédex
+	public static void removeCard(int cardIndex){
+		cards.remove(cardIndex); //On retire la carte du pokédex
+		System.out.println(cards);
 	}
+	
 
 }

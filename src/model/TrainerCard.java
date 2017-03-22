@@ -3,11 +3,11 @@ package model;
 public class TrainerCard extends Card {
 	
 	private String name;
-	private PokemonType type;
+	private TrainerType type;
 	private String description;
 	private String rule;
 	
-	public TrainerCard(String cardName,PokemonType cardType,String cardDesc,String cardRule) {
+	public TrainerCard(String cardName,TrainerType cardType,String cardDesc,String cardRule) {
 		setName(cardName);
 		setType(cardType);
 		setDescription(cardDesc);
@@ -22,11 +22,11 @@ public class TrainerCard extends Card {
 		this.name = name;
 	}
 	
-	public PokemonType getType() {
+	public TrainerType getType() {
 		return type;
 	}
 	
-	public void setType(PokemonType type) {
+	public void setType(TrainerType type) {
 		this.type = type;
 	}
 	

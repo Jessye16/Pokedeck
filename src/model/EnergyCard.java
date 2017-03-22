@@ -1,11 +1,10 @@
 package model;
 
-public class EnergyCard {
+public class EnergyCard extends Card{
 	
 	private PokemonType type;
 	
-	public EnergyCard() {
-	}
+	public EnergyCard() {}
 
 	public PokemonType getType() {
 		return type;

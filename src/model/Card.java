@@ -1,5 +1,3 @@
 package model;
 
-public class Card {
-
-}
+public class Card {}
