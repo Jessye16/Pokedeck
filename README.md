@@ -1,15 +1,13 @@
 # Pokedeck project - UPMC
 
-This project is a very light Pokedeck version that allows users to manually *add*, *remove* or *consult* pokemon cards they created themselves.
+> This project is a very light Pokedeck version that allows users to manually *add*, *remove* or *consult* pokemon cards they created themselves.
 
-----------------------------
 
 ## Quick start
 
 Main.java : Initialize and runs program.
 From this file, users will be able to access to very functionnality of the program.
 
-----------------------------
 
 ## Architecture
 
@@ -22,9 +20,10 @@ This project is split into 3 main parts :
 * GUI -> package that contains all the files that makes the graphic layout.
 
 ### Files
-
+  #### Controller
 * PokedeckController.java : Main controller that has methods to open the different views, add cards, remove cards, consult cards, according to the models.
------------
+
+  #### Models
 * Card.java : Class that defines the properties -methods and variables- common to every card.
 
 * Pokedeck.java : Class that initialize the list of the cards, and add/remove a card in the table.
@@ -41,8 +40,7 @@ This project is split into 3 main parts :
 
 * TrainerType.java : Define the different types of Trainer cards.
 
------------
-
+  #### GUI
 * DeckListWindow.java : Main window that contains the table with cards list and add/remove/consult buttons.
 
 * AddCardWindow.java : Window with form to add either Pokemon, Trainer or Energy card.
@@ -53,12 +51,11 @@ This project is split into 3 main parts :
 
 * ViewTrainerCard.java : Window to display details of trainer cards.
 
--------------
-
-* resources -> a package that contains all the images used for GUI.
+  #### Resources
+* pictures -> a package that contains all the images used for GUI.
 
 ------------------------------------
 
-#### Notes
+## Notes
 
 I used SwingBuilder and Eclipse for this project to gain efficiency and to have an attractive GUI.
