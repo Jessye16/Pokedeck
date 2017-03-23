@@ -19,7 +19,7 @@ This project is split into 3 main parts :
 
 * **GUI** -> package that contains all the files that makes the graphic layout.
 
-### Files
+## Files
   #### Controller
 * PokedeckController.java : Main controller that has methods to open the different views, add cards, remove cards, consult cards, according to the models.
 
