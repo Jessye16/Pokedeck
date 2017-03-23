@@ -5,8 +5,8 @@
 
 ## Quick start
 
-Main.java : Initialize and runs program.
-From this file, users will be able to access to very functionnality of the program.
+> Main.java : Initialize and runs program.
+> From this file, users will be able to access to very functionnality of the program.
 
 
 ## Architecture
@@ -20,6 +20,7 @@ This project is split into 3 main parts :
 * GUI -> package that contains all the files that makes the graphic layout.
 
 ### Files
+
   #### Controller
 * PokedeckController.java : Main controller that has methods to open the different views, add cards, remove cards, consult cards, according to the models.
 
