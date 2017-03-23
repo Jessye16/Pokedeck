@@ -59,3 +59,5 @@ This project is split into 3 main parts :
 ## Notes
 
 I used *SwingBuilder* and *Eclipse* for this project to gain efficiency and to have an attractive GUI.
+
+##### @author Jessye
