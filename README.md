@@ -7,7 +7,7 @@
 
 > **Main.java** : Initialize and runs program.
 > From this file, users will be able to access to very functionnality of the program.
-> #Added runnable "pokedeckLauncher" jar for quick demo.
+> *Added **runnable jar** "pokedeckLauncher" for quick demo.*
 
 ## Architecture
 
