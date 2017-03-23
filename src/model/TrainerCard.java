@@ -8,6 +8,7 @@ public class TrainerCard extends Card {
 	private String rule;
 	
 	public TrainerCard(String cardName,TrainerType cardType,String cardDesc,String cardRule) {
+		setCardType(CardType.TRAINER);
 		setName(cardName);
 		setType(cardType);
 		setDescription(cardDesc);

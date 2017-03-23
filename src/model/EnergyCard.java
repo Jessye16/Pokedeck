@@ -4,7 +4,10 @@ public class EnergyCard extends Card{
 	
 	private PokemonType type;
 	
-	public EnergyCard() {}
+	public EnergyCard(PokemonType cardType) {
+		setCardType(CardType.ENERGY);
+		setType(cardType);
+	}
 
 	public PokemonType getType() {
 		return type;

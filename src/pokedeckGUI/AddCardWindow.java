@@ -1,5 +1,4 @@
 package pokedeckGUI;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,29 +13,33 @@ import model.PokemonType;
 import model.TrainerType;
 
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
-import java.awt.TextArea;
+import javax.swing.AbstractButton;
+import java.util.Enumeration;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
 import controller.PokedeckController;
-import javax.swing.JTextPane;
-import javax.swing.border.LineBorder;
-import javax.swing.DropMode;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.text.NumberFormatter;
+import javax.swing.JSlider;
 
 public class AddCardWindow extends JFrame {
 
 	private PokedeckController controller;
 	private JPanel contentPane;
 	private JTextField pkmnNameField;
-	private JTextField pkmnHpField;
+	private JFormattedTextField pkmnHpField;
 	private JTextField pkmnEvolutionField;
 	private JTextField trainerNameField;
 
@@ -97,12 +100,12 @@ public class AddCardWindow extends JFrame {
 		pkmnNameField.setColumns(10);
 		
 		//--------------- POKEMON TYPE -------------------
-		//Pokemon name label
+		//Pokemon type label
 		JLabel lblPkmnType = new JLabel("Type");
 		lblPkmnType.setBounds(41, 61, 46, 14);
 		pkmnPanel.add(lblPkmnType);
 		
-		//Pokemon name comboBox
+		//Pokemon type comboBox
 		JComboBox pkmnComboBox = new JComboBox();
 		pkmnComboBox.setBackground(new Color(255, 255, 255));
 		pkmnComboBox.setModel(new DefaultComboBoxModel(PokemonType.values()));
@@ -115,8 +118,17 @@ public class AddCardWindow extends JFrame {
 		lblHp.setBounds(41, 112, 46, 14);
 		pkmnPanel.add(lblHp);
 		
-		//Pokemon HP textField
-		pkmnHpField = new JTextField();
+		//Pokemon HP Formated textfield
+		NumberFormat format = NumberFormat.getInstance();
+	    NumberFormatter formatter = new NumberFormatter(format);
+	    formatter.setValueClass(Integer.class);
+	    formatter.setMinimum(0);
+	    formatter.setMaximum(999);
+	    formatter.setAllowsInvalid(false);
+	    formatter.setCommitsOnValidEdit(true); //commit on each keystroke instead of focus lost
+		
+		pkmnHpField = new JFormattedTextField(formatter);
+		pkmnHpField.setText("0");
 		pkmnHpField.setColumns(10);
 		pkmnHpField.setBounds(41, 131, 290, 20);
 		pkmnPanel.add(pkmnHpField);
@@ -190,7 +202,14 @@ public class AddCardWindow extends JFrame {
 		// --- add button action ---
 		pkmnAddBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String pkmnNameValue = pkmnNameField.getText();
+				PokemonType pkmnTypeValue = (PokemonType)pkmnComboBox.getSelectedItem();
+				String pkmnHpValue = pkmnHpField.getText();
+				String stageValue = getSelectedButtonText(stageBtnGroup);
+				String pkmnEvolutionValue = pkmnEvolutionField.getText();
+				String pkmnDescValue = pkmnTextArea.getText();
 				
+				controller.addPokemonCard(pkmnNameValue,pkmnTypeValue,pkmnHpValue,stageValue,pkmnEvolutionValue,pkmnDescValue);
 			}
 		});
 		pkmnPanel.add(pkmnAddBtn);
@@ -313,6 +332,12 @@ public class AddCardWindow extends JFrame {
 		//--------------- ADD BUTTON -------------------
 		//Energy add button
 		JButton energyAddBtn = new JButton("ADD");
+		energyAddBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PokemonType energyTypeValue = (PokemonType)energyComboBox.getSelectedItem();
+				controller.addEnergyCard(energyTypeValue);
+			}
+		});
 		energyAddBtn.setForeground(Color.WHITE);
 		energyAddBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
 		energyAddBtn.setBackground(new Color(220, 20, 60));
@@ -320,4 +345,17 @@ public class AddCardWindow extends JFrame {
 		energyPanel.add(energyAddBtn);
 		
 	}
+	
+	//Get Selected JRadioButton
+	public String getSelectedButtonText(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+
+        return null;
+    }
 }

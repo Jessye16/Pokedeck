@@ -22,5 +22,9 @@ public class Pokedeck {
 		System.out.println(cards);
 	}
 	
+	//get card at Index
+	public static Card getCardAtIndex(int index){
+		return cards.get(index);
+	}
 
 }
