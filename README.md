@@ -1,19 +1,20 @@
 Pokedeck project - UPMC
 ------------------------
-------------------------
 
 This project is a very light Pokedeck version that allows users to manually *add*, *remove* or *consult* pokemon cards they created themselves.
 
 ----------------------------
 
-##Quick start
+Quick start
+----------------------------
 
 Main.java : Initialize and runs program.
 From this file, users will be able to access to very functionnality of the program.
 
 ----------------------------
 
-##Architecture
+Architecture
+----------------------------
 
 This project is split into 3 main parts :
 
